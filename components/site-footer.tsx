@@ -18,6 +18,7 @@ export function SiteFooter({ socialLinks = [] }: { socialLinks?: Array<{ href: s
           <Link href="/collections">Collections</Link>
           <Link href="/prints">Fine-art prints</Link>
           <Link href="/journal">Field journal</Link>
+          <Link href="/tales-from-the-road">Tales from the Road</Link>
           <Link href="/expeditions">Expeditions</Link>
         </div>
         <div>

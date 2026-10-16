@@ -5,12 +5,14 @@ import { inquirySchema } from "@/lib/validation";
 import { isSameOriginMutation } from "@/lib/security";
 import { getPhotograph } from "@/lib/catalog";
 import { inquiryMessage } from "@/lib/inquiry-details";
+import { getRoadStory } from "@/lib/tales";
 
 export async function POST(request: Request) {
   try {
     if (!isSameOriginMutation(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
     const parsed = inquirySchema.safeParse(await request.json());
     if (!parsed.success) return NextResponse.json({ error: "Please review the inquiry fields." }, { status: 400 });
+    if (parsed.data.storySlug && !getRoadStory(parsed.data.storySlug)) return NextResponse.json({ error: "That story is unavailable. Please select a published story." }, { status: 400 });
     const db = database();
     const ipHash = await sha256(`${process.env.RATE_LIMIT_SALT ?? "local"}:${clientAddress(request)}`);
     const windowStart = Date.now() - 10 * 60 * 1000;

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { StoryPreview } from "@/components/road-story";
+import { publishedRoadStories } from "@/lib/tales";
 import { PageHero } from "@/components/page-hero";
 import { PlaceholderFrame } from "@/components/placeholder-frame";
 import { getJournalPosts, getPublicPhotographs } from "@/lib/catalog";
@@ -25,7 +27,8 @@ export default async function JournalPage() {
         title="The stories beyond the frame."
         intro="Behind-the-image notes, journeys, wildlife encounters, and practical guidance for living with photographic art."
       />
-      <section className="section section-stone"><div className="container-wide outdoor-heading"><p className="eyebrow ink">Start in the field</p><h2>Colorado, in light and water.</h2><p>Read the selected photographic archive: the environments, visual decisions and possibilities for a future field assignment.</p><Link className="text-link" href="/expeditions/colorado-field-archive">Explore the field story →</Link></div></section>
+      <nav className="container-wide explore-topics" aria-label="Field Journal sections"><Link href="/tales-from-the-road">Tales from the Road →</Link><Link href="/expeditions/colorado-field-archive">Colorado photographic archive →</Link></nav>
+      {publishedRoadStories[0] && <StoryPreview story={publishedRoadStories[0]}/>}
       <section className="section section-ivory">
         <div className="container-wide journal-list">
           {journalPosts.filter(post => post.published).map((post, index) => {

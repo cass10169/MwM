@@ -12,6 +12,7 @@ export const inquirySchema = z.object({
   location: z.string().trim().max(200).default(""),
   imageSlug: z.string().regex(/^[a-z0-9-]*$/).max(160).optional(),
   imageReference: z.string().trim().max(300).optional(),
+    storySlug: z.string().regex(/^[a-z0-9-]*$/).max(160).optional(),
   sessionType: z.string().trim().max(100).optional(),
   projectSubject: z.string().trim().max(300).optional(),
   deliverables: z.string().trim().max(1000).optional(),
@@ -32,7 +33,7 @@ export const inquirySchema = z.object({
   website: z.string().max(0),
 }).superRefine((value, ctx) => {
   if (value.serviceType === "Licensing") {
-    if (!value.imageSlug && !value.imageReference) ctx.addIssue({code:"custom",path:["imageReference"],message:"Identify an image or describe the images you need."});
+    if (!value.imageSlug && !value.imageReference && !value.storySlug) ctx.addIssue({code:"custom",path:["imageReference"],message:"Identify an image or describe the images you need."});
     if (!value.intendedUse) ctx.addIssue({code:"custom",path:["intendedUse"],message:"Tell me how you plan to use the image."});
   }
   if (["Print Question", "Print consultation"].includes(value.serviceType) && !value.imageSlug && !value.imageReference) ctx.addIssue({code:"custom",path:["imageReference"],message:"Identify a photograph or describe what you are looking for."});

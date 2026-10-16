@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { publishedRoadStories, storyPath } from "@/lib/tales";
 import { publishedExpeditions } from "@/lib/expeditions";
 import { getCollections, getJournalPosts, getStoreProducts } from "@/lib/catalog";
 const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://memorieswithmike.com";
@@ -23,6 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/services",
     "/about",
     "/journal",
+    "/tales-from-the-road",
     "/contact",
     "/partners",
     "/media-kit",
@@ -35,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/accessibility",
   ];
   return [
+    ...publishedRoadStories.map(story=>({url:base+storyPath(story.slug),lastModified:new Date(story.updatedAt),changeFrequency:"monthly" as const,priority:0.8})),
     ...staticRoutes.map((route) => ({
       url: `${base}${route}`,
       lastModified: new Date(),

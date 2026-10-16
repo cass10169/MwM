@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { StoryPreview } from "@/components/road-story";
+import { publishedRoadStories } from "@/lib/tales";
 import { EditorialPhoto } from "@/components/editorial-photo";
 import { getPublicPhotographs } from "@/lib/catalog";
 import { imageRoles, pageMetadata } from "@/lib/outdoor";
@@ -29,6 +31,7 @@ export default async function Home() {
     </div></section>
     <section className="section section-stone"><div className="container-wide outdoor-feature"><EditorialPhoto photo={photo("alpine-afterglow")} ratio="4 / 3" /><div><p className="eyebrow ink">Made in the field</p><h2>Place becomes<br /><em>the story.</em></h2><p>Landscape and wildlife photographs are the starting point. Commission destination imagery, product-in-environment photography, expedition storytelling, or a commercial image library shaped around your brief.</p><p>Existing photographs are also available for licensing, with usage and file suitability confirmed for your project.</p><Link className="text-link" href="/licensing">Explore image licensing →</Link></div></div></section>
     <section className="section section-ivory"><div className="container-wide outdoor-feature"><EditorialPhoto photo={photo("valley-before-rain")} ratio="3 / 2" /><div><p className="eyebrow ink">Featured field story / Colorado</p><h2>Colorado, in<br /><em>light and water.</em></h2><p>Alpine lakes, a high-country road, falling water, and mountain valleys. Explore selected work across Colorado outings and how a similar visual approach could serve a destination or field assignment.</p><div className="button-row"><Link className="button button-dark" href="/expeditions/colorado-field-archive">Explore the field story →</Link><Link className="text-link" href="/contact?service=Commercial%20Photography">Plan a field assignment ↗</Link></div></div></div></section>
+    {publishedRoadStories[0] && <StoryPreview story={publishedRoadStories[0]}/>}
     <section className="section section-dark outdoor-partners" aria-labelledby="partner-heading"><div className="container-wide">
       <div className="outdoor-heading"><p className="eyebrow">02 / Create together</p><h2 id="partner-heading">Partner with<br /><em>Memories with Mike.</em></h2><p>Put your brand in the landscape. Commission photography, destination stories, and practical field content shaped around a clear creative brief.</p></div>
       <div className="partnership-sectors">{["Photography","Outdoor","Adventure & Vehicle","Technology"].map((name,i)=><div key={name}><span>0{i+1}</span><h3>{name}</h3><p>{["Tools for making and carrying photographs.","Systems for time on trails and in camp.","Travel, storage, and access to the field.","Power, navigation, communications, and production."][i]}</p></div>)}</div>

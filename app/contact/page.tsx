@@ -1,12 +1,14 @@
 import Link from "next/link";
+import { getRoadStory } from "@/lib/tales";
 import { getPhotograph } from "@/lib/catalog";
 import type { Metadata } from "next";
 import { InquiryForm } from "@/components/inquiry-form";
 import { PageHero } from "@/components/page-hero";
 import { pageMetadata } from "@/lib/outdoor";
 export const metadata: Metadata = pageMetadata("Contact & Partnership Inquiries", "Contact Michael Kennedy about brand partnerships, expeditions, commercial photography, licensing, prints, or local sessions.", "/contact");
-export default async function ContactPage({ searchParams }: { searchParams: Promise<{ service?: string; image?: string; print?: string; session?: string }> }) {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ service?: string; image?: string; print?: string; session?: string; story?: string }> }) {
   const query = await searchParams;
+  const story = query.story ? getRoadStory(query.story) : undefined;
   const service = query.service === "print-consultation" ? "Print Question" : query.service;
   const slug = query.image ?? query.print;
   const photo = slug && /^[a-z0-9-]{1,160}$/.test(slug) ? await getPhotograph(slug) : undefined;
@@ -23,7 +25,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         <div className="container-wide contact-grid">
           <div>
             <p className="eyebrow ink">Start an inquiry</p>
-            <InquiryForm initialType={initialType} image={photo ? {slug:photo.slug,title:photo.title} : undefined} session={session} />
+            <InquiryForm initialType={initialType} image={photo ? {slug:photo.slug,title:photo.title} : undefined} session={session} story={story ? {slug:story.slug,title:story.title} : undefined}/>
           </div>
           <aside>
             <div>
