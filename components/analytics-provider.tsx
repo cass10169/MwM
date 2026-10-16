@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useSyncExternalStore } from "react";
 
 type AnalyticsDetail = { name: string; properties: Record<string, string | number | boolean> };
@@ -27,11 +28,12 @@ function readConsent(): Consent {
 }
 
 export function AnalyticsProvider() {
+  const pathname = usePathname();
   const provider = process.env.NEXT_PUBLIC_ANALYTICS_PROVIDER ?? "none";
   const consent = useSyncExternalStore(subscribeToConsent, readConsent, () => null);
   useEffect(() => {
     if (
-      window.location.pathname.startsWith("/admin") ||
+      pathname.startsWith("/admin") ||
       provider === "none" ||
       (provider === "google" && consent !== "granted")
     )
@@ -73,13 +75,13 @@ export function AnalyticsProvider() {
       if (link?.getAttribute("href") === "/partners") handler(new CustomEvent("mwm:analytics", {detail:{name:"partner_cta",properties:{}}}));
     };
     document.addEventListener("click", commercialClick);
-    if (window.location.pathname === "/media-kit") handler(new CustomEvent("mwm:analytics", {detail:{name:"media_kit_view",properties:{}}}));
+    if (pathname === "/media-kit") handler(new CustomEvent("mwm:analytics", {detail:{name:"media_kit_view",properties:{}}}));
     return () => {
       window.removeEventListener("mwm:analytics", handler);
       document.removeEventListener("click", commercialClick);
       script.remove();
     };
-  }, [provider, consent]);
+  }, [provider, consent, pathname]);
   if (
     provider !== "google" ||
     consent !== null ||

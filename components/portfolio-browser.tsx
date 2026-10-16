@@ -91,10 +91,10 @@ export function PortfolioBrowser({ initialPhotos }: { initialPhotos: Photograph[
               ))}
             </select>
           </label>
-          <label className="check-label">
+          {initialPhotos.some(item => item.available) && <label className="check-label">
             <input type="checkbox" checked={available} onChange={(event) => setAvailable(event.target.checked)} />{" "}
             Available as print
-          </label>
+          </label>}
         </div>
         <button className="view-toggle" type="button" aria-pressed={immersive} onClick={() => setImmersive(!immersive)}>
           {immersive ? "Grid view" : "Immersive view"}
@@ -165,6 +165,7 @@ export function PortfolioBrowser({ initialPhotos }: { initialPhotos: Photograph[
       <dialog
         ref={dialogRef}
         className="lightbox"
+        aria-label={photo ? `${photo.title} — image viewer` : "Image viewer"}
         onClose={() => setActive(null)}
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") move(-1);
