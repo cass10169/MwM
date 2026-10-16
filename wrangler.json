@@ -1,0 +1,42 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "memories-with-mike",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-05-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "memories-with-mike",
+      "database_id": "00000000-0000-4000-8000-000000000000",
+      "migrations_dir": ".openai/drizzle"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "memories-with-mike-media"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  },
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://memorieswithmike.com",
+    "NEXT_PUBLIC_ANALYTICS_PROVIDER": "none",
+    "ENABLE_SAMPLE_CHECKOUT": "false",
+    "REQUIRE_PRODUCTION_CONFIGURATION": "false",
+    "ADMIN_EMAIL_ALLOWLIST": "michael.kennedy@ku.edu",
+    "ADMIN_BOOTSTRAP_EMAIL": "michael.kennedy@ku.edu",
+    "ADMIN_NOTIFICATION_EMAIL": "michael.kennedy@ku.edu",
+    "CLOUDFLARE_ACCESS_TEAM_DOMAIN": "https://replace-me.cloudflareaccess.com",
+    "CLOUDFLARE_ACCESS_AUD": "replace-with-access-audience-tag",
+    "STORAGE_DRIVER": "cloudflare-r2",
+    "FULFILLMENT_PROVIDER": "MANUAL"
+  }
+}

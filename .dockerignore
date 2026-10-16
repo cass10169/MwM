@@ -1,0 +1,10 @@
+node_modules
+dist
+.next
+.sites-runtime
+.git
+.wrangler
+playwright-report
+test-results
+.env*
+*.log

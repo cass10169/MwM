@@ -1,0 +1,3 @@
+title,slug,category,location,shortDescription,story,altText,orientation,aspectRatio,dominantColor,status,featured,portfolioVisible,storeAvailable,seoVisible,sortOrder
+REPLACE Sample Landscape,sample-landscape,Landscapes,Location to be added,REPLACE before publishing,REPLACE with Michael's real story,REPLACE with accurate alt text,landscape,3:2,earth,DRAFT,false,false,false,false,100
+REPLACE Sample Wildlife,sample-wildlife,Wildlife,Location to be added,REPLACE before publishing,REPLACE with Michael's real story,REPLACE with accurate alt text,portrait,4:5,green,DRAFT,false,false,false,false,110

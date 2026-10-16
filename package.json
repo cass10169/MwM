@@ -1,40 +1,67 @@
 {
-  "name": "navbar-dropdown-v1",
+  "name": "memories-with-mike",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+  "engines": {
+    "node": ">=22.13.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "install:ci": "npm ci",
+    "dev": "vite",
+    "build": "node scripts/build-verified.mjs",
+    "deploy": "npm run build && wrangler deploy",
+    "start": "vinext start",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run test:unit && npm run build && node --test tests/rendered-html.test.mjs tests/outdoor-rendered.test.mjs",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "test:e2e:a11y": "playwright test tests/e2e/accessibility.spec.ts",
+    "validate:artifact": "node scripts/validate-artifact.mjs",
+    "bundle:report": "node scripts/bundle-report.mjs",
+    "audit": "npm audit --omit=dev",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern .wrangler --ignore-pattern playwright-report --ignore-pattern test-results --ignore-pattern legacy-2022",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:generate": "drizzle-kit generate",
+    "cloudflare:configure": "node scripts/configure-cloudflare.mjs",
+    "cloudflare:whoami": "wrangler whoami",
+    "db:migrate:local": "wrangler d1 migrations apply memories-with-mike --local",
+    "db:migrate:remote": "wrangler d1 migrations apply memories-with-mike --remote",
+    "admin:bootstrap": "node scripts/bootstrap-admin.mjs"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "drizzle-orm": "0.45.2",
+    "jose": "6.1.3",
+    "next": "16.3.1",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "stripe": "20.0.0",
+    "zod": "4.1.12"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.0",
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@cloudflare/workers-types": "4.20260702.1",
+    "@playwright/test": "1.62.1",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "drizzle-kit": "0.31.10",
+    "esbuild": "0.28.0",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "prettier": "3.6.2",
+    "react-server-dom-webpack": "19.2.6",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vinext": "0.0.50",
+    "vite": "8.0.13",
+    "vitest": "4.0.13",
+    "wrangler": "4.92.0"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "type": "module",
+  "displayName": "Memories with Mike"
 }

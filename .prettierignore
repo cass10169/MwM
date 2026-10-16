@@ -1,0 +1,9 @@
+node_modules
+dist
+.sites-runtime
+.openai/drizzle
+package-lock.json
+playwright-report
+test-results
+
+legacy-2022/

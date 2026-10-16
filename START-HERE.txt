@@ -1,0 +1,11 @@
+MEMORIES WITH MIKE — CLOUDFLARE DEPLOYMENT
+
+1. Open CLOUDFLARE-DEPLOYMENT.md and follow it from top to bottom.
+2. Do not add the custom domain until the workers.dev preview passes the checklist.
+3. Checkout is disabled by default. Leave it disabled until Stripe, email,
+   shipping, taxes, products, and policies are ready.
+4. The current website is not changed by anything in this ZIP.
+
+The detailed guide includes Windows PowerShell commands, resource creation,
+Cloudflare Access setup, database migrations, deployment, the GoDaddy/Cloudflare
+domain cutover, testing, rollback, and later Stripe/email activation.

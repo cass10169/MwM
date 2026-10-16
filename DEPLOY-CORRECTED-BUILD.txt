@@ -1,0 +1,40 @@
+MEMORIES WITH MIKE — CORRECTED PRODUCTION BUILD
+================================================
+
+This package fixes the Windows build launcher and replaces the unfinished
+public placeholders with the bundled photography.
+
+IMPORTANT: Keep the Cloudflare configuration you already completed.
+
+1. Extract this ZIP beside your existing folder. The new folder is named:
+   memories-with-mike-cloudflare-production-ready
+
+2. Open PowerShell in the new folder.
+
+3. Copy your configured wrangler.json from the existing project:
+
+   Copy-Item ..\memories-with-mike-cloudflare\wrangler.json .\wrangler.json -Force
+
+4. If your old project has a local .dev.vars file, copy it too:
+
+   if (Test-Path ..\memories-with-mike-cloudflare\.dev.vars) { Copy-Item ..\memories-with-mike-cloudflare\.dev.vars .\.dev.vars -Force }
+
+5. Install the exact package versions:
+
+   npm ci
+
+6. Verify the corrected build:
+
+   npm run typecheck
+   npm run test:unit
+   npm run build
+
+7. Deploy over the existing Cloudflare Worker:
+
+   npx wrangler deploy
+
+The Worker name remains memories-with-mike, so this updates the existing
+deployment. It does not delete the remote D1 database or R2 bucket.
+
+Do not run the database migrations again unless a newer package contains an
+additional numbered migration file.
