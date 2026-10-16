@@ -1,3 +1,4 @@
+import { inquiryLink } from "@/lib/commercial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
@@ -48,13 +49,14 @@ export default async function ServicesPage() {
               <h2>{service.title}</h2>
               <p>{service.description}</p>
               {startingPrices[service.slug] && <p className="service-starting-price">{startingPrices[service.slug]}</p>}
-              <Link className="text-link" href="/contact?service=Photography%20Services">
-                Ask about availability →
+              <Link className="text-link" href={inquiryLink("Photography Services", undefined, service.title)}>
+                Request a tailored quote →
               </Link>
             </article>
           ))}
         </div>
       </section>
+      <section className="section section-stone"><div className="container-wide outdoor-heading"><p className="eyebrow ink">Based in Lawrence, Kansas</p><h2>Local moments.<br />A considered approach.</h2><p>Discuss photography in Lawrence, Topeka and the Kansas City area, or ask about travel for a specific assignment. Share your date, location and coverage needs. Session length, edited deliverables, turnaround, travel and payment terms are agreed in your tailored quote.</p><Link className="text-link" href="/portfolio/people-events">Explore People &amp; Events →</Link></div></section>
       <section className="service-process section-dark">
         <div className="container-wide service-process-grid">
           <PlaceholderFrame
@@ -95,7 +97,7 @@ export default async function ServicesPage() {
             Every assignment is shaped around the date, location, coverage, and final deliverables. Share the details
             of what you are planning to receive a tailored estimate.
           </p>
-          <Link className="button button-dark" href="/contact">
+          <Link className="button button-dark" href="/contact?service=Photography%20Services">
             Start an inquiry
           </Link>
         </div>

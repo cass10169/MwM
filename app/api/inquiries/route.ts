@@ -3,6 +3,8 @@ import { clientAddress, database, sha256 } from "@/lib/platform";
 import { emailTemplates, sendEmail } from "@/lib/email";
 import { inquirySchema } from "@/lib/validation";
 import { isSameOriginMutation } from "@/lib/security";
+import { getPhotograph } from "@/lib/catalog";
+import { inquiryMessage } from "@/lib/inquiry-details";
 
 export async function POST(request: Request) {
   try {
@@ -19,6 +21,8 @@ export async function POST(request: Request) {
     if ((recent?.count ?? 0) >= 5)
       return NextResponse.json({ error: "Please wait before sending another inquiry." }, { status: 429 });
     const value = parsed.data;
+    const image = value.imageSlug ? await getPhotograph(value.imageSlug) : undefined;
+    if (value.imageSlug && !image) return NextResponse.json({ error: "That photograph is unavailable. Please choose another image." }, { status: 400 });
     const id = crypto.randomUUID();
     const now = Date.now();
     await db
@@ -35,7 +39,7 @@ export async function POST(request: Request) {
         value.location,
         value.groupSize ?? null,
         value.budget ?? null,
-        value.message,
+        inquiryMessage(value, image),
         value.referral ?? null,
         now,
         "NEW",

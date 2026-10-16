@@ -25,7 +25,9 @@ export function SiteFooter({ socialLinks = [] }: { socialLinks?: Array<{ href: s
           <Link href="/services">Photography services</Link>
           <Link href="/partners">Partnership opportunities</Link>
           <Link href="/media-kit">Media kit</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="/licensing">Image licensing</Link>
+              <Link href="/portfolio/people-events">People &amp; Events</Link>
+              <Link href="/contact">Contact</Link>
           <Link href="/faq">Frequently asked questions</Link>
           <a href="mailto:michael.kennedy@ku.edu">michael.kennedy@ku.edu</a>
         </div>

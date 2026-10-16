@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { formatMoney, type StoreProduct } from "@/lib/content";
 import { useCart } from "./cart-provider";
+import { inquiryLink } from "@/lib/commercial";
 import { trackEvent } from "@/lib/analytics";
 
 export function ProductPurchase({ product }: { product: StoreProduct }) {
@@ -45,10 +46,10 @@ export function ProductPurchase({ product }: { product: StoreProduct }) {
         <h2>Ask about this photograph</h2>
         <p>
           Contact Michael to discuss available sizes, materials, current pricing, or a custom presentation for your
-          space.
+          space. You can share your preferred dimensions, medium and destination in the next step. Michael confirms availability, crop, total price and delivery estimates before you commit.
         </p>
-        <Link className="button button-dark" href={`/contact?service=print-consultation&print=${product.slug}`}>
-          Request print details
+        <Link className="button button-dark" href={inquiryLink("Print Question", product.photographSlug ?? product.slug)} onClick={() => trackEvent("print_inquiry_started", { image: product.photographSlug ?? product.slug })}>
+          Choose your print preferences
         </Link>
       </div>
     );

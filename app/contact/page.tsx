@@ -1,10 +1,16 @@
+import Link from "next/link";
+import { getPhotograph } from "@/lib/catalog";
 import type { Metadata } from "next";
 import { InquiryForm } from "@/components/inquiry-form";
 import { PageHero } from "@/components/page-hero";
 import { pageMetadata } from "@/lib/outdoor";
 export const metadata: Metadata = pageMetadata("Contact & Partnership Inquiries", "Contact Michael Kennedy about brand partnerships, expeditions, commercial photography, licensing, prints, or local sessions.", "/contact");
-export default async function ContactPage({ searchParams }: { searchParams: Promise<{ service?: string }> }) {
-  const { service } = await searchParams;
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ service?: string; image?: string; print?: string; session?: string }> }) {
+  const query = await searchParams;
+  const service = query.service === "print-consultation" ? "Print Question" : query.service;
+  const slug = query.image ?? query.print;
+  const photo = slug && /^[a-z0-9-]{1,160}$/.test(slug) ? await getPhotograph(slug) : undefined;
+  const session = ["Weddings","Graduations","Families","Portraits","Events","Commissioned work"].includes(query.session ?? "") ? query.session : "";
   const initialType = ["Brand Partnership", "Expedition Partnership", "Commercial Photography", "Licensing", "Print Question", "Photography Services", "General Inquiry"].includes(service ?? "") ? service : "";
   return (
     <main id="main-content">
@@ -17,7 +23,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         <div className="container-wide contact-grid">
           <div>
             <p className="eyebrow ink">Start an inquiry</p>
-            <InquiryForm initialType={initialType} />
+            <InquiryForm initialType={initialType} image={photo ? {slug:photo.slug,title:photo.title} : undefined} session={session} />
           </div>
           <aside>
             <div>
@@ -34,7 +40,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
               </ol>
             </div>
             <p className="privacy-note">
-              Your information is used to respond to your inquiry and is not sold. See the privacy policy for details.
+              Your information is used to respond to your inquiry and is not sold. See the <Link href="/privacy">privacy policy</Link> for details.
             </p>
           </aside>
         </div>

@@ -16,7 +16,7 @@ Start with [CLOUDFLARE-DEPLOYMENT.md](./CLOUDFLARE-DEPLOYMENT.md). It contains t
 - Resend-compatible transactional email abstraction
 - Vitest, Playwright, and axe-core coverage
 
-Checkout and sample products are disabled by default. The current hosted website is unaffected until the Cloudflare Worker custom domain is explicitly attached.
+Production is https://memorieswithmike.com on the existing memories-with-mike Worker. The canonical source branch is outdoor-redesign-2026-10-14 in cass10169/MwM; main and legacy-2022 retain the earlier application. Checkout and sample products are disabled in production. See docs/COMMERCIAL-OPTIMIZATION.md for the current release workflow.
 
 ## Local development
 

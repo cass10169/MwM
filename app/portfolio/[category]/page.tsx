@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { isOutdoor } from "@/lib/commercial";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
@@ -5,6 +7,8 @@ import { PortfolioBrowser } from "@/components/portfolio-browser";
 import { getPublicPhotographs } from "@/lib/catalog";
 
 const map = {
+ "people-events":{title:"People & Events",intro:"Weddings, graduations, families, portraits and events. Explore personal moments and local assignments."},
+ adventure:{title:"Adventure / Field",intro:"Colorado high country, roads, water and the landscape around the journey."},
  landscapes:{title:"Landscapes",intro:"High country, still water, open prairie, and changing weather."},
  wildlife:{title:"Wildlife",intro:"Wildlife encounters from Colorado and Kansas."},
  waterfalls:{title:"Waterfalls",intro:"Water moving through Colorado’s mountain terrain."},
@@ -15,6 +19,8 @@ const map = {
  events:{title:"Events",intro:"Gatherings, celebrations, and documentary moments."},
 } as const;
 function matches(photo: import("@/lib/content").Photograph, category: string) {
+ if(category==="people-events")return !isOutdoor(photo);
+ if(category==="adventure")return ["high-country-passage","crystal-mill","valley-before-rain","alpine-afterglow"].includes(photo.slug);
  if(category==="waterfalls")return ["canyon-cascade","cascade-above-timberline"].includes(photo.slug);
  if(category==="night")return photo.slug==="road-beneath-the-stars";
  if(category==="colorado")return /colorado/i.test(photo.location)&&["Landscapes","Wildlife"].includes(photo.category);
@@ -40,7 +46,7 @@ export default async function CategoryPortfolioPage({ params }: { params: Promis
       <PageHero eyebrow="Portfolio collection" title={details.title} intro={details.intro} />
       <section className="gallery-section section-ivory">
         <div className="container-wide">
-          <PortfolioBrowser initialPhotos={filtered} />
+          <p className="gallery-paths"><Link className="text-link" href={category==="people-events"?"/services":"/portfolio"}>{category==="people-events"?"Photography services & tailored quotes →":"Explore all outdoor work →"}</Link></p><PortfolioBrowser initialPhotos={filtered} />
         </div>
       </section>
     </main>

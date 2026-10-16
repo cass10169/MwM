@@ -12,7 +12,7 @@
     "deploy": "npm run build && wrangler deploy",
     "start": "vinext start",
     "typecheck": "tsc --noEmit",
-    "test": "npm run test:unit && npm run build && node --test tests/rendered-html.test.mjs tests/outdoor-rendered.test.mjs",
+    "test": "npm run test:unit && npm run build && node --test tests/rendered-html.test.mjs tests/outdoor-rendered.test.mjs tests/commercial-rendered.test.mjs",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
     "test:e2e:a11y": "playwright test tests/e2e/accessibility.spec.ts",

@@ -14,6 +14,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/portfolio/landscapes",
     "/portfolio/wildlife",
     "/portfolio/events",
+    "/portfolio/people-events",
+    "/portfolio/adventure",
+    "/licensing",
     ...["waterfalls","night","colorado","kansas","national-parks"].map(s=>`/portfolio/${s}`),
     "/collections",
     "/prints",
@@ -45,7 +48,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     })),
     ...products
-      .filter((product) => product.enabled)
       .map((product) => ({
         url: `${base}/prints/${product.slug}`,
         lastModified: new Date(),

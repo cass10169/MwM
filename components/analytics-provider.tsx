@@ -68,8 +68,15 @@ export function AnalyticsProvider() {
       else analyticsWindow.gtag?.("event", detail.name, detail.properties);
     };
     window.addEventListener("mwm:analytics", handler);
+    const commercialClick = (event: MouseEvent) => {
+      const link = (event.target as Element)?.closest?.("a");
+      if (link?.getAttribute("href") === "/partners") handler(new CustomEvent("mwm:analytics", {detail:{name:"partner_cta",properties:{}}}));
+    };
+    document.addEventListener("click", commercialClick);
+    if (window.location.pathname === "/media-kit") handler(new CustomEvent("mwm:analytics", {detail:{name:"media_kit_view",properties:{}}}));
     return () => {
       window.removeEventListener("mwm:analytics", handler);
+      document.removeEventListener("click", commercialClick);
       script.remove();
     };
   }, [provider, consent]);

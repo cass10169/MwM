@@ -1,3 +1,4 @@
+import { inquiryLink, isOutdoor } from "@/lib/commercial";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -112,6 +113,8 @@ export default async function PrintDetailPage({ params }: { params: Promise<{ sl
               filename={photo.filename}
               ratio={ratio}
               variant={photo.variant}
+              fit="contain"
+              loading="eager"
               src={photo.displayUrl}
               alt={photo.altText}
               focalPointX={photo.focalPointX}
@@ -139,6 +142,7 @@ export default async function PrintDetailPage({ params }: { params: Promise<{ sl
               {product.enabled ? `From ${formatMoney(product.startingPrice)}` : "Available by inquiry"}
             </p>
             <ProductPurchase product={product} />
+            {isOutdoor(photo) && <div className="licensing-panel"><p className="eyebrow ink">For your campaign or publication</p><h2>Use this image commercially.</h2><p>Request permission for specific media, territory and duration. A print purchase does not include reproduction rights.</p><Link className="text-link" href={inquiryLink("Licensing", photo.slug)}>License this image →</Link></div>}
           </div>
         </div>
       </section>
@@ -202,10 +206,9 @@ export default async function PrintDetailPage({ params }: { params: Promise<{ sl
           </article>
           <article>
             <p className="eyebrow">Materials &amp; care</p>
-            <h2>Made for a lifetime of viewing.</h2>
+            <h2>The right presentation for your space.</h2>
             <p>
-              Material descriptions, care instructions, framing notes, and final lab specifications are managed per
-              product so customers see only approved information.
+              Discuss paper or other preferred media, dimensions, framing, and the room where the print will live. Michael confirms available options, any crop, care guidance, production time and shipping costs with your quote.
             </p>
             <Link className="text-link light" href="/shipping-returns">
               Shipping and care details →

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { inquiryLink, isOutdoor } from "@/lib/commercial";
 import Link from "next/link";
 import type { Photograph } from "@/lib/content";
 import { PlaceholderFrame } from "./placeholder-frame";
@@ -138,6 +139,7 @@ export function PortfolioBrowser({ initialPhotos }: { initialPhotos: Photograph[
                 </div>
                 <FavoriteButton slug={item.slug} compact />
               </div>
+              <div className="image-actions">{isOutdoor(item) ? <><Link href={`/prints/${item.slug}`}>Print details →</Link><Link href={inquiryLink("Licensing", item.slug)}>License this image →</Link></> : <Link href={`/photography/${item.slug}`}>View story & inquire →</Link>}</div>
             </article>
           );
         })}
@@ -219,7 +221,7 @@ export function PortfolioBrowser({ initialPhotos }: { initialPhotos: Photograph[
                 </div>
                 <div className="lightbox-actions">
                   <FavoriteButton slug={photo.slug} />
-                  <ShareButton title={photo.title} path={`/prints/${photo.slug}`} />
+                  <ShareButton title={photo.title} path={isOutdoor(photo) ? `/prints/${photo.slug}` : `/photography/${photo.slug}`} />
                   <button
                     className="favorite-button"
                     type="button"
@@ -228,9 +230,10 @@ export function PortfolioBrowser({ initialPhotos }: { initialPhotos: Photograph[
                   >
                     {zoomed ? "Reset zoom" : "Zoom display image"}
                   </button>
-                  <Link className="button button-light" href={`/prints/${photo.slug}`}>
-                    View print options
+                  <Link className="button button-light" href={isOutdoor(photo) ? `/prints/${photo.slug}` : `/photography/${photo.slug}`}>
+                    {isOutdoor(photo) ? "View print options" : "View photography story"}
                   </Link>
+                  {isOutdoor(photo) && <Link className="text-link light" href={inquiryLink("Licensing", photo.slug)}>License this image →</Link>}
                 </div>
               </div>
             </div>

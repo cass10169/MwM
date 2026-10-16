@@ -347,7 +347,10 @@ export async function getStoreProducts(includeDrafts = false): Promise<StoreProd
       const savedBySlug = new Map(output.map((product) => [product.slug, product]));
       const bundled = fallbackProducts.map((product) => {
         const saved = savedBySlug.get(product.slug);
-        if (!saved) return product;
+        if (!saved) {
+          const sample = process.env.NODE_ENV !== "production" || process.env.ENABLE_SAMPLE_CHECKOUT === "true";
+          return { ...product, enabled: sample && product.enabled, variants: product.variants.map(v => ({...v, available: sample && v.available})) };
+        }
         savedBySlug.delete(product.slug);
         return { ...product, ...saved };
       });

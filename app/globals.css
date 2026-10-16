@@ -3192,3 +3192,20 @@ body:has(.admin-shell) > .site-footer {
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; animation:none !important; } }
 .explore-topics { display:flex; flex-wrap:wrap; gap:.8rem 1.8rem; padding-bottom:2rem; margin-bottom:2rem; border-bottom:1px solid var(--line); }
 .explore-topics a { font-size:.82rem; padding:.75rem 0; text-decoration:underline; text-underline-offset:.4rem; }
+
+/* Commercial paths retain the outdoor editorial system. */
+.commercial-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem;margin:2.5rem 0}
+.commercial-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.commercial-grid article{border-top:1px solid currentColor;padding-top:1.5rem;min-width:0}
+.commercial-grid h3{font-size:1.7rem;margin-bottom:1rem}.commercial-grid p,.commercial-grid li{line-height:1.8}
+.commercial-grid ul{padding-left:1.2rem}.commercial-grid li+li{margin-top:.7rem}
+.commercial-selection{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;margin-top:2.5rem}
+.commercial-selection figure{margin:0;min-width:0}.commercial-selection figcaption{font-size:.9rem;line-height:1.6;margin-top:.8rem}
+.image-actions{display:flex;gap:1rem;flex-wrap:wrap;font-size:.82rem;margin:1rem 0 2rem}.image-actions a{text-decoration:underline;text-underline-offset:4px}
+.gallery-paths{padding:1.5rem 0;line-height:1.8}.licensing-panel{border-top:1px solid #aaa;margin-top:2rem;padding-top:2rem}.licensing-panel h2{font-size:1.8rem}
+.inquiry-context{padding:1.5rem;background:#e9e5db;margin-bottom:2rem}.inquiry-context p{margin:.5rem 0}
+.form-field input[aria-invalid=true],.form-field textarea[aria-invalid=true],.form-field select[aria-invalid=true]{border-color:#9b3025}
+.form-error-summary{padding:1rem;border:1px solid #9b3025;color:#702218;margin-bottom:1rem}
+.field-story-copy{max-width:78ch;line-height:1.85;margin-bottom:3rem}.field-story-copy h2{margin:2rem 0 1rem}
+@media(max-width:800px){.commercial-grid,.commercial-grid.three{grid-template-columns:1fr}.commercial-selection{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}}
+@media(max-width:480px){.commercial-selection{grid-template-columns:1fr}}
