@@ -1,7 +1,9 @@
-import type { RoadStory } from "./types";
+import { coloradoMedia as media } from "./colorado-media";
+import { coloradoVideos } from "./colorado-videos";
+import type { RoadStory, StoryBlock } from "./types";
 
-// Narrative supplied by Michael. Media is on his other devices: do not substitute archive images.
-export const coloradoAutumn2026: RoadStory = {
+// Narrative supplied by Michael; actual trip media selected from the October source folder.
+const firstEntry: RoadStory = {
   slug: "colorado-autumn-2026",
   title: "Colorado: Chasing Autumn Through the High Country",
   subtitle: "Road miles, fall color, wildlife, mountain weather, unexpected hikes, and nights in a hammock.",
@@ -82,5 +84,52 @@ export const coloradoAutumn2026: RoadStory = {
       "That is where this entry pauses for now. There are more files to work through, more photographs to edit, and more of the road to put into words."
     ] },
     { id: "next-chapter", type: "future", editorialNote: "Append the return journey and corrected chronology here when Michael supplies it. Edited Nikon selections can also be inserted into the relevant earlier chapters." }
+  ]
+};
+
+const prose = (...ids: string[]) => ids.flatMap(id=>{
+  const block=firstEntry.blocks.find(b=>b.id===id);
+  return block && "paragraphs" in block ? block.paragraphs : [];
+});
+const photo = (id: string, filename: string): StoryBlock => ({id,type:"image",fullWidth:true,image:media[filename]});
+export const coloradoAutumn2026: RoadStory = {
+  ...firstEntry,
+  id:"colorado-autumn-2026",
+  version:2,
+  updatedAt:"2026-10-20",
+  subtitle:"Five pounds of bacon, mountain roads, wildlife, changing weather, and the adventures that never quite go according to plan.",
+  growingNote:"This story is still growing. These photographs and field notes are the beginning; more memories, edits, and details from the road will find their way here.",
+  mediaNote:undefined,
+  locations:["Colorado","Denver","Granby","Telluride","Mountain Village","Ewing Gulch"],
+  revisions:[{date:"2026-10-16",note:"First written field journal."},{date:"2026-10-20",note:"Photographic edition with eight chapters, selected Nikon and phone images, and video excerpts."}],
+  hero:media["DSC_1922.jpg"],
+  blocks:[
+    {id:"the-late-start",type:"intro",title:"01 / A Late Start and a Missed Breakfast",paragraphs:prose("the-late-start")},
+    {id:"departure-media",type:"split",title:"West, eventually.",image:media["20261008_085702.jpg"],paragraphs:["Two days late, but finally on the road. The breakfast plan had already gone sideways; the Colorado part was still ahead of me."]},
+    {id:"burger-tradition",type:"text",title:"02 / Some Traditions Are Worth the Detour",paragraphs:prose("burger-tradition")},
+    {id:"burger-media",type:"split",reverse:true,title:"Five pounds counts as restraint.",image:media["4b687509-a2ba-436d-a158-b241a9282489.jpg"],paragraphs:prose("granby")},
+    {id:"first-night",type:"campsite",title:"03 / First Night in the Wild",paragraphs:prose("first-night")},
+    {id:"first-evening",type:"gallery",images:[media["20261008_183826.jpg"],media["20261009_101929.jpg"]]},
+    {id:"quiet-road",type:"route",title:"04 / Miles Without a Signal",paragraphs:prose("quiet-road"),items:["Granby","US 40 → CO 131 → I-70 → CO 133 → CO 92","Toward Telluride"]},
+    {id:"windshield",type:"quote",text:"Some photographs aren’t planned. Sometimes you see something through the windshield and know you’ll regret it if you don’t pull over."},
+    {id:"roadside-discovery",type:"split",title:"The scene that made me stop",image:media["20261009_171118.jpg"],paragraphs:[...prose("roadside-discovery"),"The pasture photograph at the start of this story is the Nikon frame from that stop. This phone portrait is the other side of it: me, the roadside, and the landscape that interrupted the drive."]},
+    {id:"telluride",type:"text",title:"05 / Telluride at Last",paragraphs:prose("elk")},
+    photo("wildlife-media","20261009_175613.jpg"),
+    {id:"telluride-evening",type:"text",paragraphs:prose("telluride")},
+    photo("telluride-overlook","DSC_1984.jpg"),
+    {id:"telluride-details",type:"gallery",images:[media["20261009_184420.jpg"],media["DSC_1973-HDR.jpg"]]},
+    photo("autumn-waterway","DSC_1925.jpg"),
+    {id:"little-hawaii",type:"text",title:"06 / The Hike That Wasn’t Supposed to Happen",paragraphs:prose("library")},
+    {id:"forest-details",type:"gallery",images:[media["DSC_1992-HDR.jpg"],media["DSC_1999.jpg"]]},
+    {id:"just-looking",type:"text",paragraphs:prose("little-hawaii").slice(0,3)},
+    {id:"woodland-water",type:"gallery",images:[media["DSC_2003.jpg"],media["DSC_2006.jpg"]]},
+    {id:"waterfall-frame",type:"split",title:"The water, and the way back",image:media["DSC_2013.jpg"],paragraphs:prose("little-hawaii").slice(3)},
+    coloradoVideos.waterfall,
+    {id:"ewing-gulch",type:"campsite",title:"07 / An Old Place, a Different Memory",paragraphs:prose("ewing-gulch").map(p=>p.replace("I headed south toward Rico and returned to Ewing Gulch", "I returned to Ewing Gulch, south of Rico"))},
+    {id:"camp-morning",type:"gallery",images:[media["20261011_080145.jpg"],media["20261011_082913.jpg"]]},
+    coloradoVideos.river,
+    {id:"quiet-detail",type:"split",reverse:true,title:"A quieter morning",image:media["DSC_2005.jpg"],paragraphs:["By morning I felt significantly better, although not completely recovered. I decided to begin the trip back toward Kansas."]},
+    {id:"toward-home",type:"text",title:"08 / The Road Continues",paragraphs:["I came for the landscapes and fall color. What stays with me is a little less orderly: the burger stop, the elk, the pasture I hadn’t planned to photograph, and a hike that taught me to take my own limits more seriously.","That is where this entry pauses. I still have photographs to work through and details to put into words. The next trip can wait long enough for me to learn something from this one."]},
+    photo("valley-finale","DSC_2037-HDR.jpg")
   ]
 };

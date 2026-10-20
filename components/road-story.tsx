@@ -1,14 +1,15 @@
 import Link from "next/link";
 import type { RoadStory, StoryBlock, StoryImage } from "@/lib/tales/types";
-import { storyInquiry, storyPath } from "@/lib/tales";
+import { storyInquiry, storyImageInquiry, storyPath } from "@/lib/tales";
 import { RoadVideo } from "./road-video";
 
-export function RoadImage({ image, eager = false }: { image: StoryImage; eager?: boolean }) {
+export function RoadImage({ image, eager = false, storySlug }: { image: StoryImage; eager?: boolean; storySlug?: string }) {
   return <figure className={`road-photo road-photo-${image.role}`}>
     {/* Web derivatives retain the source aspect ratio; phone portraits are never forced into landscape crops. */}
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img src={image.src} srcSet={image.sources?.map(s=>`${s.src} ${s.width}w`).join(", ")} sizes="(max-width: 768px) 100vw, 1200px" width={image.width} height={image.height} alt={image.alt} loading={eager ? "eager" : "lazy"} decoding="async" fetchPriority={eager ? "high" : "auto"}/>
     {(image.caption || image.credit) && <figcaption>{image.caption}{image.credit && <span>{image.credit}</span>}</figcaption>}
+    {storySlug && image.licensable && <Link className="road-license" href={storyImageInquiry(storySlug,image.id)}>License This Photograph <span aria-hidden="true">↗</span></Link>}
   </figure>;
 }
 
@@ -22,10 +23,11 @@ export function StoryPreview({ story }: { story: RoadStory }) {
 export function RoadBlock({ block, story, printLinks }: { block: StoryBlock; story: RoadStory; printLinks: Record<string,string> }) {
   if(block.type === "future") return block.visible ? <aside className="road-prose road-note" id={block.id}>{block.editorialNote}</aside> : null;
   if(block.type === "quote") return <div className="road-pullquote" id={block.id}><p>{block.text}</p><span className="eyebrow ink">From the road</span></div>;
-  if(block.type === "image") return <div id={block.id} className={block.fullWidth ? "road-wide" : "road-prose"}><RoadImage image={block.image}/></div>;
-  if(block.type === "gallery") return <div id={block.id} className={`road-wide road-gallery road-gallery-${block.images.length}`}>{block.images.map(image=><RoadImage key={image.id} image={image}/>)}</div>;
+  if(block.type === "image") return <div id={block.id} className={block.fullWidth ? "road-wide" : "road-prose"}><RoadImage image={block.image} storySlug={story.slug}/></div>;
+  if(block.type === "split") return <section id={block.id} className={`road-wide road-split ${block.reverse ? "road-split-reverse" : ""}`}><RoadImage image={block.image} storySlug={story.slug}/><div><p className="eyebrow ink">From the field</p><h3>{block.title}</h3>{block.paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div></section>;
+  if(block.type === "gallery") return <div id={block.id} className={`road-wide road-gallery road-gallery-${block.images.length}`}>{block.images.map(image=><RoadImage key={image.id} image={image} storySlug={story.slug}/>)}</div>;
   if(block.type === "video") return <div className="road-wide" id={block.id}><RoadVideo {...block}/></div>;
-  if(block.type === "behind-shot") return block.image.approvedFinal ? <section className="road-wide road-behind" id={block.id}><RoadImage image={block.image}/><div><p className="eyebrow ink">Behind the Shot</p><h2>{block.title}</h2>{block.paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div></section> : null;
+  if(block.type === "behind-shot") return block.image.approvedFinal ? <section className="road-wide road-behind" id={block.id}><RoadImage image={block.image} storySlug={story.slug}/><div><p className="eyebrow ink">Behind the Shot</p><h2>{block.title}</h2>{block.paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div></section> : null;
   if(block.type === "cta") {
     if(block.kind === "print" && (!block.photographSlug || !printLinks[block.photographSlug])) return null;
     return <div className="road-prose road-inline-cta" id={block.id}><Link className="text-link" href={block.kind === "print" ? printLinks[block.photographSlug!] : storyInquiry(story.slug,block.kind,block.photographSlug)}>{block.kind === "print" ? "View this print" : block.kind === "licensing" ? "License this image" : "Partner on a future field project"} →</Link></div>;
@@ -33,6 +35,6 @@ export function RoadBlock({ block, story, printLinks }: { block: StoryBlock; sto
   return <section className={`road-prose road-chapter road-${block.type}`} id={block.id}>
     {block.title && <h2>{block.title}</h2>}
     {block.paragraphs.map((p,i)=><p key={i}>{p}</p>)}
-    {block.items && <ol className="road-route" aria-label="Recalled route, not turn-by-turn directions">{block.items.map(item=><li key={item}>{item}</li>)}</ol>}
+    {block.items && <ol className="road-route-list" aria-label="Recalled route, not turn-by-turn directions">{block.items.map(item=><li key={item}>{item}</li>)}</ol>}
   </section>;
 }

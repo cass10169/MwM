@@ -14,7 +14,9 @@ test('living story, archive and discovery paths render with truthful metadata',a
     if(route!==path)assert.ok(html.includes(path));
     if(route===path){
       for(const s of ['Hardee','Fitch Ranch','Little Hawaii','Ewing Gulch','Version','still growing','BlogPosting','BreadcrumbList','story='+slug])assert.ok(html.includes(s),s);
-      assert.doesNotMatch(html,/<video|View Colorado prints|Insert verified departure|roadside-final/);
+      assert.doesNotMatch(html,/View Colorado prints|Insert verified departure|roadside-final/);
+      assert.match(html,/<video/);
+      assert.match(html,/License This Photograph/);
       assert.ok(html.includes('rel="canonical" href="https://memorieswithmike.com'+path+'"'));
     }
   }
@@ -34,4 +36,27 @@ test('story-linked forms retain canonical context and reject invented stories',a
   }
   const response=await worker.fetch(request('/api/inquiries',{method:'POST',headers:{'content-type':'application/json',origin:'http://localhost'},body:JSON.stringify({name:'QA Reader',email:'reader@example.com',serviceType:'Licensing',storySlug:'invented-story',intendedUse:'Editorial',message:'An invalid story context test.',consent:true,website:''})}),{...env,DB},ctx);
   assert.equal(response.status,400);
+});
+
+test('story image inquiries reject forged IDs and retain the selected original reference',async()=>{
+ // Find the canonical ID in rendered licensing links, without relying on a fixed hash.
+ const page=await (await worker.fetch(request(path),env,ctx)).text();
+ const id=page.match(/storyImage=(nikon-[a-f0-9]{12})/)[1];
+ const html=await (await worker.fetch(request('/contact?service=Licensing&story='+slug+'&storyImage='+id),env,ctx)).text();
+ assert.ok(html.includes('name="storyImageId"')); assert.ok(html.includes(id));
+ let stored;
+ const DB={prepare(sql){let values;return {bind(...v){values=v;return this},async first(){return {count:0}},async all(){return {results:[]}},async run(){if(sql.startsWith('INSERT INTO inquiries'))stored=values;return {success:true}}}}};
+ for(const imageId of [id,'nikon-forged']) {
+  const response=await worker.fetch(request('/api/inquiries',{method:'POST',headers:{'content-type':'application/json',origin:'http://localhost'},body:JSON.stringify({name:'QA Reader',email:'reader@example.com',serviceType:'Licensing',storySlug:slug,storyImageId:imageId,intendedUse:'Editorial',message:'Please quote this particular image.',consent:true,website:''})}),{...env,DB},ctx);
+  assert.equal(response.status,imageId===id?201:400);
+  if(imageId===id){assert.ok(stored[9].includes(id));assert.ok(stored[9].includes('DSC_1922.jpg'));}
+ }
+});
+test('video route streams seek ranges and denies originals',async()=>{
+ const key='stories/colorado-autumn-2026/phone-012345abcdef/0123456789abcdef.mp4';
+ const BUCKET={async head(){return {size:100,httpEtag:'"test"'}},async get(k,opts){assert.equal(k,key);return {body:new Uint8Array(opts.range.length)}}};
+ for(const [range,status,length] of [['bytes=10-19',206,10],['bytes=-8',206,8],['bytes=95-',206,5],['bytes=100-',416,0],['bytes=20-10',416,0],['bytes=-0',416,0]]){
+  const r=await worker.fetch(request('/media/'+key,{headers:{range}}),{...env,BUCKET},ctx);assert.equal(r.status,status);assert.equal((await r.arrayBuffer()).byteLength,length);
+ }
+ assert.equal((await worker.fetch(request('/media/stories/colorado-autumn-2026/original.mov'),{...env,BUCKET},ctx)).status,404);
 });

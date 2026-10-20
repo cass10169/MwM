@@ -3,7 +3,7 @@ import { cloneElement, useId, useRef, useState, type ReactElement } from "react"
 import { inquirySchema, type InquiryData } from "@/lib/validation";
 import { trackEvent } from "@/lib/analytics";
 
-export function InquiryForm({ initialType = "", image, session = "", story }: { initialType?: string; image?: {slug:string;title:string}; session?:string; story?:{slug:string;title:string} }) {
+export function InquiryForm({ initialType = "", image, session = "", story, storyImage }: { storyImage?: {id:string;title:string}; initialType?: string; image?: {slug:string;title:string}; session?:string; story?:{slug:string;title:string} }) {
   const [status, setStatus] = useState("");
   const [inquiryType, setInquiryType] = useState(initialType);
   const [errors, setErrors] = useState<Partial<Record<keyof InquiryData,string>>>({});
@@ -43,6 +43,7 @@ export function InquiryForm({ initialType = "", image, session = "", story }: { 
   const field = (name: keyof InquiryData, label: string, placeholder = "", type = "text") => <FormField key={name} label={label} error={errors[name]}><input name={name} type={type} placeholder={placeholder} maxLength={name === "email" ? 254 : 200} autoComplete={name === "name" ? "name" : name === "email" ? "email" : name === "company" ? "organization" : undefined}/></FormField>;
   return <form className="inquiry-form" onSubmit={submit} noValidate>
     {story && <div className="inquiry-context"><p className="eyebrow ink">From Tales from the Road</p><strong>{story.title}</strong><p>Your inquiry will include this story automatically. Describe any particular scene in your message.</p><input name="storySlug" type="hidden" value={story.slug}/></div>}
+    {storyImage && <div className="inquiry-context"><p className="eyebrow ink">Selected story photograph</p><strong>{storyImage.title}</strong><p>Reference: {storyImage.id}</p><input name="storyImageId" type="hidden" value={storyImage.id}/></div>}
     {image && <div className="inquiry-context"><p className="eyebrow ink">Selected photograph</p><strong>{image.title}</strong><p>Your inquiry will include this photograph automatically.</p><input name="imageSlug" type="hidden" value={image.slug}/></div>}
     <div className="honeypot" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off"/></label></div>
     {Object.keys(errors).length > 0 && <div className="form-error-summary" role="alert" ref={summary} tabIndex={-1}><strong>Please review your inquiry.</strong><ul>{Object.entries(errors).map(([key,error])=><li key={key}>{error}</li>)}</ul></div>}

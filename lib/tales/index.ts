@@ -8,3 +8,13 @@ export function storyInquiry(slug: string, kind: "licensing" | "partnership", im
   if(image) query.set("image",image);
   return `/contact?${query.toString()}`;
 }
+
+export function storyImages(slug: string) {
+  const story=getRoadStory(slug);
+  if(!story) return [];
+  return [...(story.hero ? [story.hero] : []), ...story.blocks.flatMap(b=>"image" in b ? [b.image] : b.type==="gallery" ? b.images : [])];
+}
+export const getStoryImage = (slug: string, id: string) => storyImages(slug).find(image=>image.id===id && image.licensable);
+export function storyImageInquiry(slug: string, id: string) {
+  return `/contact?${new URLSearchParams({service:"Licensing",story:slug,storyImage:id})}`;
+}

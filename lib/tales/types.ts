@@ -1,5 +1,7 @@
 export type StoryImage = {
   id: string;
+  filename?: string;
+  licensable?: boolean;
   src: string;
   sources?: Array<{ src: string; width: number }>;
   width: number;
@@ -16,6 +18,7 @@ export type StoryBlock = { id: string } & (
   | { type: "intro" | "text" | "wildlife" | "campsite" | "route"; title?: string; paragraphs: string[]; items?: string[] }
   | { type: "quote"; text: string }
   | { type: "image"; image: StoryImage; fullWidth?: boolean }
+  | { type: "split"; title: string; paragraphs: string[]; image: StoryImage; reverse?: boolean }
   | { type: "gallery"; images: [StoryImage, StoryImage] | [StoryImage, StoryImage, StoryImage] }
   | { type: "video"; src: string; poster: string; title: string; width: number; height: number; transcript: string; captions?: string; mutedPreview?: boolean }
   | { type: "behind-shot"; title: string; paragraphs: string[]; image: StoryImage }
@@ -23,6 +26,9 @@ export type StoryBlock = { id: string } & (
   | { type: "future"; editorialNote: string; visible?: boolean }
 );
 export type RoadStory = {
+  id?: string;
+  locations?: string[];
+  revisions?: Array<{date: string; note: string}>;
   slug: string;
   title: string;
   subtitle: string;

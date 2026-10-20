@@ -1,0 +1,354 @@
+[
+  {
+    "id": "nikon-468c1ee876f2",
+    "filename": "DSC_1922.jpg",
+    "sha256": "468c1ee876f2d6c4b9695a515f8b1d2cc1952433de41a52b7234a89dc6d88796",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      2560,
+      1662
+    ],
+    "suggestedChapter": 4,
+    "altText": "Cattle across a green pasture beneath golden trees, mountain peaks and a cloud-filled sky.",
+    "proposedCaption": "Cattle across a green pasture beneath golden trees, mountain peaks and a cloud-filled sky.",
+    "selectionReason": "Opening landscape and the unplanned roadside stop.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-31a4afea2b83",
+    "filename": "DSC_1925.jpg",
+    "sha256": "31a4afea2b8354d88735ae3c4b2422a9252ddf29fa2ea81a624f6d4de4cbfe87",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      2560,
+      1709
+    ],
+    "suggestedChapter": 5,
+    "altText": "A creek edged with autumn trees and mountain slopes.",
+    "proposedCaption": "A creek edged with autumn trees and mountain slopes.",
+    "selectionReason": "Waterway transition; no unverified trail name.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-5ae75500311e",
+    "filename": "DSC_1973-HDR.jpg",
+    "sha256": "5ae75500311eb7f61db0b19fea73521d6cb839fc044fb82cd728290cce1fa72f",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      1709,
+      2560
+    ],
+    "suggestedChapter": 5,
+    "altText": "An autumn street scene in Telluride, framed by golden trees.",
+    "proposedCaption": "An autumn street scene in Telluride, framed by golden trees.",
+    "selectionReason": "Town atmosphere; not incorrectly captioned as a waterway.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-e4d40f957e92",
+    "filename": "DSC_1984.jpg",
+    "sha256": "e4d40f957e9239748931d3df5764de710deaab2b2b5fa8301f7c43dc68444995",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      2560,
+      1709
+    ],
+    "suggestedChapter": 5,
+    "altText": "Telluride rooftops beneath gold-covered slopes, exposed rock and low clouds.",
+    "proposedCaption": "Telluride rooftops beneath gold-covered slopes, exposed rock and low clouds.",
+    "selectionReason": "Wide chapter landscape; more horizontal context than DSC_1983.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-23862ab0ddc9",
+    "filename": "DSC_1992-HDR.jpg",
+    "sha256": "23862ab0ddc9242edc44d463ab9164bb8da79c9c2a25c60a0fb5a10a51982fe4",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      1709,
+      2560
+    ],
+    "suggestedChapter": 6,
+    "altText": "Pale aspen trunks rising through a canopy of yellow leaves.",
+    "proposedCaption": "Pale aspen trunks rising through a canopy of yellow leaves.",
+    "selectionReason": "Forest portrait with a different rhythm from the landscapes.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-b2e9b0ce345a",
+    "filename": "DSC_1999.jpg",
+    "sha256": "b2e9b0ce345ab834ebf366889c822d35d7be44e6aa6a7dfc34bb87d6b91d4508",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      2560,
+      1709
+    ],
+    "suggestedChapter": 6,
+    "altText": "Water droplets on round yellow autumn leaves against a dark background.",
+    "proposedCaption": "Water droplets on round yellow autumn leaves against a dark background.",
+    "selectionReason": "Intimate detail between landscapes.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-ac196a846116",
+    "filename": "DSC_2003.jpg",
+    "sha256": "ac196a8461163292e887dd7c82c6014febfdcb11d764126501f39c6545f3c02c",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      1709,
+      2560
+    ],
+    "suggestedChapter": 6,
+    "altText": "A wooded creek winding through deep shade.",
+    "proposedCaption": "A wooded creek winding through deep shade.",
+    "selectionReason": "Transition into the woodland sequence; exact trail unconfirmed.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-5a5fde129777",
+    "filename": "DSC_2005.jpg",
+    "sha256": "5a5fde129777d72071d3ba74523f02c52a3b9eeb8e0bbac6681c84b775e394d5",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      2560,
+      1709
+    ],
+    "suggestedChapter": 7,
+    "altText": "Small patches of yellow foliage standing out against deep forest shadow.",
+    "proposedCaption": "Small patches of yellow foliage standing out against deep forest shadow.",
+    "selectionReason": "Quiet transition toward recovery.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-4c6655279700",
+    "filename": "DSC_2006.jpg",
+    "sha256": "4c6655279700006060c2e7b507ceed09343fc3376b5296cefe137609200e1049",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      1709,
+      2560
+    ],
+    "suggestedChapter": 6,
+    "altText": "White water tumbling through mossy rocks and fallen branches.",
+    "proposedCaption": "White water tumbling through mossy rocks and fallen branches.",
+    "selectionReason": "Distinct cascade composition.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-1df46659d9fe",
+    "filename": "DSC_2013.jpg",
+    "sha256": "1df46659d9fe0c4df5c97a857315ae3a89beab9282d6886cfa7739c529a52626",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      1709,
+      2560
+    ],
+    "suggestedChapter": 6,
+    "altText": "A waterfall dropping between layered rock walls into a shallow, stony creek.",
+    "proposedCaption": "A waterfall dropping between layered rock walls into a shallow, stony creek.",
+    "selectionReason": "Primary waterfall; more breathing room above and below than DSC_2014.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "nikon-012f4400d4e1",
+    "filename": "DSC_2037-HDR.jpg",
+    "sha256": "012f4400d4e1551d57653cb7b9e6099da948ba13c26d1b92d4000d5ed6c3a304",
+    "cameraType": "NIKON D750",
+    "dimensions": [
+      2560,
+      1709
+    ],
+    "suggestedChapter": 8,
+    "altText": "A broad mountain valley with sunlit autumn forest beneath layered clouds.",
+    "proposedCaption": "A broad mountain valley with sunlit autumn forest beneath layered clouds.",
+    "selectionReason": "Closing landscape; balanced foreground and valley depth. Alternate views retained offline.",
+    "printCandidacy": "Pending review of full-resolution master; no product created.",
+    "licensingCandidacy": true
+  },
+  {
+    "id": "phone-7be42d2a3171",
+    "filename": "20261008_085702.jpg",
+    "sha256": "7be42d2a3171239d0e8acd971a38b3f7d2eea47fce103f6cfab5309db01a066e",
+    "cameraType": "SM-S908U",
+    "dimensions": [
+      3000,
+      4000
+    ],
+    "suggestedChapter": 1,
+    "altText": "The road west, seen through the car window on October 8.",
+    "proposedCaption": "The road west, seen through the car window on October 8.",
+    "selectionReason": "Departure documentary.",
+    "printCandidacy": "Documentary only",
+    "licensingCandidacy": false
+  },
+  {
+    "id": "phone-648057a4265c",
+    "filename": "20261008_183826.jpg",
+    "sha256": "648057a4265cd86241b2be4cf626a86c861e55bef1b8d9e4f311221cf49f12c1",
+    "cameraType": "SM-S908U",
+    "dimensions": [
+      3000,
+      4000
+    ],
+    "suggestedChapter": 3,
+    "altText": "A deer among the trees on the evening of October 8.",
+    "proposedCaption": "A deer among the trees on the evening of October 8.",
+    "selectionReason": "First evening wildlife; distinct from the later elk encounter.",
+    "printCandidacy": "Documentary only",
+    "licensingCandidacy": false
+  },
+  {
+    "id": "phone-2f5cb4be2dec",
+    "filename": "20261009_101929.jpg",
+    "sha256": "2f5cb4be2decfc0fd562855c6096ae01f628ae56c1ae158f98e3cafe537c2c95",
+    "cameraType": "SM-S908U",
+    "dimensions": [
+      4000,
+      3000
+    ],
+    "suggestedChapter": 3,
+    "altText": "Two birds on the forest floor on October 9.",
+    "proposedCaption": "Two birds on the forest floor on October 9.",
+    "selectionReason": "Quiet morning detail; species not assigned.",
+    "printCandidacy": "Documentary only",
+    "licensingCandidacy": false
+  },
+  {
+    "id": "phone-8330cccce60a",
+    "filename": "20261009_171118.jpg",
+    "sha256": "8330cccce60a6d8b64bfa89e997a1af01f8f0ece2972bfab3e03b9de6b41d658",
+    "cameraType": "SM-S908U",
+    "dimensions": [
+      2208,
+      2944
+    ],
+    "suggestedChapter": 4,
+    "altText": "A roadside self-portrait with the green pasture and autumn mountains behind me.",
+    "proposedCaption": "A roadside self-portrait with the green pasture and autumn mountains behind me.",
+    "selectionReason": "Human companion to the Nikon hero.",
+    "printCandidacy": "Documentary only",
+    "licensingCandidacy": false
+  },
+  {
+    "id": "phone-1211f80a4084",
+    "filename": "20261009_175613.jpg",
+    "sha256": "1211f80a408451ea904c90e1175898a72db34c63e8e06465645e0a2c19b151d0",
+    "cameraType": "SM-S908U",
+    "dimensions": [
+      4000,
+      3000
+    ],
+    "suggestedChapter": 5,
+    "altText": "Elk grazing outside Telluride in the evening light.",
+    "proposedCaption": "Elk grazing outside Telluride in the evening light.",
+    "selectionReason": "Arrival encounter.",
+    "printCandidacy": "Documentary only",
+    "licensingCandidacy": false
+  },
+  {
+    "id": "phone-79bfe73b4025",
+    "filename": "20261009_184420.jpg",
+    "sha256": "79bfe73b40255b43b3d4483d813d10687ceb851add8a9367773168d8d783556c",
+    "cameraType": "SM-S908U",
+    "dimensions": [
+      4000,
+      3000
+    ],
+    "suggestedChapter": 5,
+    "altText": "Autumn slopes through the gondola window on the way to Mountain Village.",
+    "proposedCaption": "Autumn slopes through the gondola window on the way to Mountain Village.",
+    "selectionReason": "Documentary travel perspective.",
+    "printCandidacy": "Documentary only",
+    "licensingCandidacy": false
+  },
+  {
+    "id": "phone-b84a4f37ad48",
+    "filename": "20261010_135325.mp4",
+    "sha256": "b84a4f37ad4809e0ebbb524173c6ce79023453eff68d88a4c656d6e99ca65379",
+    "cameraType": "Phone video; model not verified from container",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "suggestedChapter": 6,
+    "altText": "Silent excerpt from the October 10 phone clip: white water drops through layered rock into the creek.",
+    "proposedCaption": "Silent excerpt from the October 10 phone clip: white water drops through layered rock into the creek.",
+    "selectionReason": "Short silent excerpt adds movement without duplicating every clip.",
+    "printCandidacy": "not-proposed",
+    "licensingCandidacy": "review-required"
+  },
+  {
+    "id": "phone-2043ee25f2c3",
+    "filename": "20261011_080145.jpg",
+    "sha256": "2043ee25f2c3f4d8aef0151cfcffe844626626e08ad9321701faa64b7d93cf79",
+    "cameraType": "SM-S908U",
+    "dimensions": [
+      4000,
+      3000
+    ],
+    "suggestedChapter": 7,
+    "altText": "A view up into the trees through the hammock net on October 11.",
+    "proposedCaption": "A view up into the trees through the hammock net on October 11.",
+    "selectionReason": "Hammock documentary; explicitly dated to the later camp.",
+    "printCandidacy": "Documentary only",
+    "licensingCandidacy": false
+  },
+  {
+    "id": "phone-8757eff32b24",
+    "filename": "20261011_081759.mp4",
+    "sha256": "8757eff32b24fff38d4257086d32de486ad1faebea3fedb705234ce5bbff87cb",
+    "cameraType": "Phone video; model not verified from container",
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "suggestedChapter": 7,
+    "altText": "Silent excerpt from the October 11 phone clip: water runs past a wooded bank and autumn foliage.",
+    "proposedCaption": "Silent excerpt from the October 11 phone clip: water runs past a wooded bank and autumn foliage.",
+    "selectionReason": "Short silent excerpt adds movement without duplicating every clip.",
+    "printCandidacy": "not-proposed",
+    "licensingCandidacy": "review-required"
+  },
+  {
+    "id": "phone-2022ecb17299",
+    "filename": "20261011_082913.jpg",
+    "sha256": "2022ecb17299b2c6f6e1c65d63e8d06fb3d4403a2839393dbb01a4d3067cd299",
+    "cameraType": "SM-S908U",
+    "dimensions": [
+      3000,
+      4000
+    ],
+    "suggestedChapter": 7,
+    "altText": "A morning self-portrait at camp on October 11.",
+    "proposedCaption": "A morning self-portrait at camp on October 11.",
+    "selectionReason": "Recovery and personal presence.",
+    "printCandidacy": "Documentary only",
+    "licensingCandidacy": false
+  },
+  {
+    "id": "phone-acd60b9fe5a1",
+    "filename": "4b687509-a2ba-436d-a158-b241a9282489.jpg",
+    "sha256": "acd60b9fe5a185292365dbf9563218b5861b4ace0389d8e94551f36a5fdab917",
+    "cameraType": "SM-S908U",
+    "dimensions": [
+      3000,
+      4000
+    ],
+    "suggestedChapter": 2,
+    "altText": "The sign and exterior at Grandpa’s Burger Haven in Denver.",
+    "proposedCaption": "The sign and exterior at Grandpa’s Burger Haven in Denver.",
+    "selectionReason": "Personal food tradition.",
+    "printCandidacy": "Documentary only",
+    "licensingCandidacy": false
+  }
+]

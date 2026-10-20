@@ -5,7 +5,7 @@ import { inquirySchema } from "@/lib/validation";
 import { isSameOriginMutation } from "@/lib/security";
 import { getPhotograph } from "@/lib/catalog";
 import { inquiryMessage } from "@/lib/inquiry-details";
-import { getRoadStory } from "@/lib/tales";
+import { getRoadStory, getStoryImage } from "@/lib/tales";
 
 export async function POST(request: Request) {
   try {
@@ -13,6 +13,7 @@ export async function POST(request: Request) {
     const parsed = inquirySchema.safeParse(await request.json());
     if (!parsed.success) return NextResponse.json({ error: "Please review the inquiry fields." }, { status: 400 });
     if (parsed.data.storySlug && !getRoadStory(parsed.data.storySlug)) return NextResponse.json({ error: "That story is unavailable. Please select a published story." }, { status: 400 });
+    if (parsed.data.storyImageId && (!parsed.data.storySlug || !getStoryImage(parsed.data.storySlug,parsed.data.storyImageId))) return NextResponse.json({ error: "That story photograph is unavailable." }, { status: 400 });
     const db = database();
     const ipHash = await sha256(`${process.env.RATE_LIMIT_SALT ?? "local"}:${clientAddress(request)}`);
     const windowStart = Date.now() - 10 * 60 * 1000;
